@@ -47,9 +47,28 @@ const storyStages = {
         image: "fountain.jpg"
     },
     continueOnOwn: {
-        text: "You decide to continue on your own. As you venture deeper into the forest, you encounter a pack of wolves. Game over.",
-        choices: [],
+        text: "You decide to continue on your own. As you venture deeper into the forest, you encounter a pack of wolves. What do you do?",
+        choices: [
+            {
+                text: "Run away from the wolves",
+                nextStage: "runFromWolves"
+            },
+            {
+                text: "Fight the wolves",
+                nextStage: "fightWolves"
+            }
+        ],
         image: "wolves.jpg"
+    },
+    runFromWolves: {
+        text: "You choose to run away from the wolves. Despite their speed, you manage to escape and find safety. The end.",
+        choices: [],
+        image: "running.jpg"
+    },
+    fightWolves: {
+        text: "You bravely decide to fight the wolves. After a fierce battle, you emerge victorious but wounded. You continue your journey cautiously. The end.",
+        choices: [],
+        image: "fighting.jpg"
     },
     enterRuin: {
         text: "As you enter the ruin, you discover a treasure chest filled with gold coins. You become rich and live happily ever after. The end.",
@@ -71,9 +90,28 @@ const storyStages = {
         image: "cave.jpg"
     },
     enterCave: {
-        text: "You enter the cave and find a sleeping dragon guarding a pile of treasure. You awaken the dragon and become its friend. The end.",
-        choices: [],
+        text: "You enter the cave and find a sleeping dragon guarding a pile of treasure. What do you do?",
+        choices: [
+            {
+                text: "Run back",
+                nextStage: "runBack"
+            },
+            {
+                text: "Awaken the dragon and make friendship",
+                nextStage: "makeFriendship"
+            }
+        ],
         image: "dragon.jpg"
+    },
+    runBack: {
+        text: "You decide to run back out of the cave. The end.",
+        choices: [],
+        image: "away.jpg"
+    },
+    makeFriendship: {
+        text: "You awaken the dragon and make friendship. The dragon appreciates your gesture and grants you access to the treasure. You become allies and embark on adventures together. The end.",
+        choices: [],
+        image: "dragon1.jpg"
     },
     keepWalkingPastCave: {
         text: "You decide to keep walking past the cave. Eventually, you find your way out of the forest. You return home safely. The end.",
@@ -111,9 +149,7 @@ function updatePage() {
         imageDiv.innerHTML = ""; 
     }
     
-    // Check if there are no choices (game has ended)
     if (stage.choices.length === 0) {
-        // Show restart button
         const restartButton = document.createElement("button");
         restartButton.textContent = "Restart Game";
         restartButton.addEventListener("click", startGame);
